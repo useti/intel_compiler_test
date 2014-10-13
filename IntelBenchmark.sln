@@ -11,8 +11,8 @@ Global
 		Debug_Intell|x64 = Debug_Intell|x64
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
-		Release_Inrell_OMP|Win32 = Release_Inrell_OMP|Win32
-		Release_Inrell_OMP|x64 = Release_Inrell_OMP|x64
+		Release_Intell_OMP|Win32 = Release_Intell_OMP|Win32
+		Release_Intell_OMP|x64 = Release_Intell_OMP|x64
 		Release_Intell_TBB|Win32 = Release_Intell_TBB|Win32
 		Release_Intell_TBB|x64 = Release_Intell_TBB|x64
 		Release_OMP|Win32 = Release_OMP|Win32
@@ -29,10 +29,10 @@ Global
 		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug|Win32.Build.0 = Debug|Win32
 		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug|x64.ActiveCfg = Debug|x64
 		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug|x64.Build.0 = Debug|x64
-		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Inrell_OMP|Win32.ActiveCfg = Release_Inrell_OMP|Win32
-		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Inrell_OMP|Win32.Build.0 = Release_Inrell_OMP|Win32
-		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Inrell_OMP|x64.ActiveCfg = Release_Inrell_OMP|x64
-		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Inrell_OMP|x64.Build.0 = Release_Inrell_OMP|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_OMP|Win32.ActiveCfg = Release_Inrell_OMP|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_OMP|Win32.Build.0 = Release_Inrell_OMP|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_OMP|x64.ActiveCfg = Release_Inrell_OMP|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_OMP|x64.Build.0 = Release_Inrell_OMP|x64
 		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_TBB|Win32.ActiveCfg = Release_Intell|Win32
 		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_TBB|Win32.Build.0 = Release_Intell|Win32
 		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_TBB|x64.ActiveCfg = Release_Intell|x64
