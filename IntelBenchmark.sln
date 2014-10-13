@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IntelBenchmark", "IntelBenchmark\IntelBenchmark.vcxproj", "{921F431A-CFF6-49FD-ACBF-527618431189}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_Intell|Win32 = Debug_Intell|Win32
+		Debug_Intell|x64 = Debug_Intell|x64
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release_Inrell_OMP|Win32 = Release_Inrell_OMP|Win32
+		Release_Inrell_OMP|x64 = Release_Inrell_OMP|x64
+		Release_Intell_TBB|Win32 = Release_Intell_TBB|Win32
+		Release_Intell_TBB|x64 = Release_Intell_TBB|x64
+		Release_OMP|Win32 = Release_OMP|Win32
+		Release_OMP|x64 = Release_OMP|x64
+		Release_TBB|Win32 = Release_TBB|Win32
+		Release_TBB|x64 = Release_TBB|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug_Intell|Win32.ActiveCfg = Debug_Intell|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug_Intell|Win32.Build.0 = Debug_Intell|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug_Intell|x64.ActiveCfg = Debug_Intell|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug_Intell|x64.Build.0 = Debug_Intell|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug|Win32.ActiveCfg = Debug|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug|Win32.Build.0 = Debug|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug|x64.ActiveCfg = Debug|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Debug|x64.Build.0 = Debug|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Inrell_OMP|Win32.ActiveCfg = Release_Inrell_OMP|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Inrell_OMP|Win32.Build.0 = Release_Inrell_OMP|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Inrell_OMP|x64.ActiveCfg = Release_Inrell_OMP|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Inrell_OMP|x64.Build.0 = Release_Inrell_OMP|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_TBB|Win32.ActiveCfg = Release_Intell|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_TBB|Win32.Build.0 = Release_Intell|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_TBB|x64.ActiveCfg = Release_Intell|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_Intell_TBB|x64.Build.0 = Release_Intell|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_OMP|Win32.ActiveCfg = Release_OMP|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_OMP|Win32.Build.0 = Release_OMP|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_OMP|x64.ActiveCfg = Release_OMP|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_OMP|x64.Build.0 = Release_OMP|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_TBB|Win32.ActiveCfg = Release|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_TBB|Win32.Build.0 = Release|Win32
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_TBB|x64.ActiveCfg = Release|x64
+		{921F431A-CFF6-49FD-ACBF-527618431189}.Release_TBB|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
