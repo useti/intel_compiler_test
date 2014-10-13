@@ -69,4 +69,15 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="json_internalarray.inl">
+      <Filter>Заголовочные файлы</Filter>
+    </None>
+    <None Include="json_internalmap.inl">
+      <Filter>Заголовочные файлы</Filter>
+    </None>
+    <None Include="json_valueiterator.inl">
+      <Filter>Заголовочные файлы</Filter>
+    </None>
+  </ItemGroup>
 </Project>

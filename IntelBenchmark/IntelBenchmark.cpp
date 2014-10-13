@@ -256,8 +256,6 @@ void OMPTest(){
 	int ds_size = dataArray1.size();
 	const int size = iterate_count;
 #ifdef _WITH_OMP
-#pragma omp parallel shared(dataArray1, dataArray2, dataArray3,l_aggregate,ds_size, iterate_count)
-	{
 #pragma omp parallel for schedule(static,chunk)
 		for (int itr = 0; itr < size; itr++) {
 #else
@@ -275,7 +273,6 @@ void OMPTest(){
 			}
 		}
 #ifdef _WITH_OMP
-	}
 #else
 #ifdef _WITH_TBB
 	);
@@ -289,8 +286,6 @@ void CMPTest(){
 	int ds_size = dataArray1.size();
 	const int size = iterate_count;
 #ifdef _WITH_OMP
-#pragma omp parallel shared(dataArray1, dataArray2, dataArray3,l_aggregate,ds_size, iterate_count)
-	{
 #pragma omp parallel for schedule(static,chunk)
 		for (int itr = 0; itr < size; itr++) {
 #else
@@ -309,7 +304,6 @@ void CMPTest(){
 			}
 		}
 #ifdef _WITH_OMP
-	}
 #else
 #ifdef _WITH_TBB
 	);
