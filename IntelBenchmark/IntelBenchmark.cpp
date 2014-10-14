@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include <boost/progress.hpp>
 #include <boost/program_options.hpp>
+#include <boost/date_time.hpp>
 
 #include "json/json.h"
 #include "json/value.h"
@@ -13,7 +13,21 @@
 #include <tbb/tbb.h>
 #endif // _WITH_OMP
 
+#define START_TIMECHECK() ptime startt = boost::posix_time::microsec_clock::local_time();
+
+#define STOP_TIMECHECK() ptime curentt = boost::posix_time::microsec_clock::local_time();\
+    boost::posix_time::time_duration diff = curentt - startt;\
+    char tf[255];\
+    std::stringstream ssDuration;\
+    ssDuration << diff;\
+    std::string str = ssDuration.str();\
+    sprintf(tf, "%s\n", str.c_str());\
+    cout << tf ;
+
 using namespace std;
+using namespace boost::posix_time;
+using namespace boost::gregorian;
+
 namespace po = boost::program_options;
 float aggregate = 0;
 long long int iterate_count = 100;
@@ -178,7 +192,8 @@ int loadDataset(string fname)
 
 int init(int argc, char* argv[])
 {
-	boost::progress_timer initTime;
+    START_TIMECHECK();
+
 	desc.add_options()
 		("help", "Show this message")
 		("generate,G", po::value< vector<long long int> >(), "Generate dataset with provided size")
@@ -215,11 +230,15 @@ int init(int argc, char* argv[])
 		}
 		if (vm.count("generate")){
 			printf("\nInit time (generate)\n");
-			return generateDataset(ds_fnames[0], vm["generate"].as< vector<long long int> >()[0]);
+            int r = generateDataset(ds_fnames[0], vm["generate"].as< vector<long long int> >()[0]);
+            STOP_TIMECHECK();
+            return r;
 		}
 		else{
 			printf("\nInit time (load)\n");
-			return loadDataset(ds_fnames[0]);
+            int r = loadDataset(ds_fnames[0]);
+            STOP_TIMECHECK();
+			return r;
 		}	
 	}
 
@@ -227,6 +246,7 @@ int init(int argc, char* argv[])
 		return printHelp();
 	}
 	printf("\nInit time\n");
+    STOP_TIMECHECK();
 	return 1;
 }
 
@@ -236,7 +256,8 @@ int init(int argc, char* argv[])
 ////////////////////////////////////////////////////////////////
 
 void VECTest(){
-	boost::progress_timer vecTime;
+    START_TIMECHECK();
+
 	l_aggregate = 0;
 	int ds_size = dataArray1.size();
 	for (int itr = 0; itr < iterate_count; itr++)
@@ -248,10 +269,12 @@ void VECTest(){
 			l_aggregate = dataArray1[i] + dataArray2[i] + dataArray3[i];
 		}
 	}
+    STOP_TIMECHECK();
 }
 
 void OMPTest(){
-	boost::progress_timer cmpTime;
+    START_TIMECHECK();
+
 	l_aggregate = 0;
 	int ds_size = dataArray1.size();
 	const int size = iterate_count;
@@ -278,10 +301,12 @@ void OMPTest(){
 	);
 #endif
 #endif
+    STOP_TIMECHECK();
 }
 
 void CMPTest(){
-	boost::progress_timer cmpTime;
+    START_TIMECHECK();
+
 	l_aggregate = 0;
 	int ds_size = dataArray1.size();
 	const int size = iterate_count;
@@ -309,11 +334,13 @@ void CMPTest(){
 	);
 #endif
 #endif
+    STOP_TIMECHECK();
 }
 
 int main(int argc, char* argv[])
 {
-	boost::progress_timer overAll;
+    START_TIMECHECK();
+
 #ifdef _WITH_OMP
 	printf("\nBenchmark OpenMP\n");
 #else
@@ -348,6 +375,7 @@ int main(int argc, char* argv[])
 			CMPTest();
 		}
 		printf("\nOverall runtime\n");
+        STOP_TIMECHECK();
 	}
 	return 0;
 }

@@ -30,7 +30,8 @@ IF(MY_PARALLEL_LIB STREQUAL "OMP")
     FIND_PACKAGE(
         Boost 1.49 REQUIRED
         COMPONENTS
-        program_options)
+        program_options
+        date_time)
 
     ADD_EXECUTABLE(
             IntellBenchmark
@@ -63,7 +64,8 @@ ELSE()
             FIND_PACKAGE(
                 Boost 1.49 REQUIRED
                 COMPONENTS
-                program_options)
+                program_options
+                date_time)
 
             ADD_EXECUTABLE(
                 IntellBenchmark
