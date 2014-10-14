@@ -3,13 +3,13 @@ cmake_minimum_required (VERSION 2.6)
 PROJECT (INTELL_BENCHMARK)
 
 SET(MY_COMPILER_OPTION "GCC" CACHE STRING "Use compiler")
-SET(MY_PARALLEL_LIB "TBB" CACHE STRING "Parallel library to use")
+SET(MY_PARALLEL_LIB "OMP" CACHE STRING "Parallel library to use")
 
 
 IF (MY_COMPILER_OPTION STREQUAL "Intel")
     MESSAGE(STATUS "** Compiling with Intel settings **")
     SET(CMAKE_CXX_COMPILER "/opt/intel/composer_xe_2015/bin/icpc")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpmath=sse -march=native -ipo -ipo_obj -vec_report3")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpmath=sse -march=native -ipo -vec_report3")
     SET(CMAKE_LINKER "/opt/intel/composer_xe_2015/bin/xild")
     SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} --std=c++11")
     SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --std=c++11")
@@ -28,19 +28,19 @@ IF(MY_PARALLEL_LIB STREQUAL "OMP")
     SET(Boost_USE_STATIC_RUNTIME ON)
 
     FIND_PACKAGE(
-        Boost 1.55 REQUIRED
+        Boost 1.49 REQUIRED
         COMPONENTS
         program_options)
 
     ADD_EXECUTABLE(
-            ItellBenchmark
+            IntellBenchmark
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_value.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_writer.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_reader.cpp)
 
     TARGET_LINK_LIBRARIES (
-            ItellBenchmark
+            IntellBenchmark
             ${Boost_LIBRARIES})
 
     LINK_DIRECTORIES ("${PROJECT_BINARY_DIR}")
@@ -61,19 +61,19 @@ ELSE()
             SET(Boost_USE_STATIC_RUNTIME ON)
 
             FIND_PACKAGE(
-                Boost 1.55 REQUIRED
+                Boost 1.49 REQUIRED
                 COMPONENTS
                 program_options)
 
             ADD_EXECUTABLE(
-                ItellBenchmark
+                IntellBenchmark
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_value.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_writer.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_reader.cpp)
 
             TARGET_LINK_LIBRARIES (
-                ItellBenchmark
+                IntellBenchmark
                 ${Boost_LIBRARIES}
                 ${TBB_LIBRARIES})
 
@@ -87,7 +87,7 @@ ELSE()
     ENDIF()
 ENDIF()
 
-install(TARGETS ItellBenchmark
+install(TARGETS IntellBenchmark
     DESTINATION "${CMAKE_INSTALL_PREFIX}/${CMAKE_PROJECT_NAME}/${MY_COMPILER_OPTION}/${MY_PARALLEL_LIB}"
     )
 
