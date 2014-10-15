@@ -261,9 +261,13 @@ void VECTest(){
 	l_aggregate = 0;
 	int ds_size = dataArray1.size();
 	for (int itr = 0; itr < iterate_count; itr++)
-	{	
+	{
+#ifdef _WITH_SIMD
+#pragma simd
+#else
 #pragma vector always
 #pragma ivdep
+#endif
 		for (int i = 0; i < ds_size; i++)
 		{
 			l_aggregate = dataArray1[i] + dataArray2[i] + dataArray3[i];
@@ -321,8 +325,12 @@ void CMPTest(){
 #endif //_WITH_TBB
 #endif //_WITH_OMP
 
+#ifdef _WITH_SIMD
+#pragma simd
+#else
 #pragma vector always
 #pragma ivdep
+#endif
 			for (int i = 0; i < ds_size; i++)
 			{
 				l_aggregate = dataArray1[i] + dataArray2[i] + dataArray3[i];

@@ -2,23 +2,36 @@ cmake_minimum_required (VERSION 2.6)
 
 PROJECT (INTELL_BENCHMARK)
 
+# Custom setting declaration
 SET(MY_COMPILER_OPTION "GCC" CACHE STRING "Use compiler")
 SET(MY_PARALLEL_LIB "OMP" CACHE STRING "Parallel library to use")
+SET(MY_VERBOSE_VECTORIZATION ON CACHE BOOL "Vectorization report")
+SET(MY_WITH_SIMD OFF CACHE BOOL "Use SIMD hint instead ivdep")
 
+# Common compiler settings
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpmath=sse -march=native --std=c++11")
 
+IF(MY_WITH_SIMD)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_WITH_SIMD")
+ENDIF()
+
+# Enable Inell compiler
 IF (MY_COMPILER_OPTION STREQUAL "Intel")
     MESSAGE(STATUS "** Compiling with Intel settings **")
     SET(CMAKE_CXX_COMPILER "/opt/intel/composer_xe_2015/bin/icpc")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpmath=sse -march=native -ipo -vec_report3")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ipo")
+    IF(MY_VERBOSE_VECTORIZATION)
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -vec_report3")
+    ENDIF()
     SET(CMAKE_LINKER "/opt/intel/composer_xe_2015/bin/xild")
-    SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} --std=c++11")
-    SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --std=c++11")
+# Enable gcc
 ELSE()
     MESSAGE(STATUS "** Compiling with GCC settings **")
     SET(CMAKE_CXX_COMPILER "/usr/bin/g++")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpmath=sse -march=native -ftree-vectorize -ftree-vectorizer-verbose=3")
-    SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} --std=c++11")
-    SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --std=c++11")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftree-vectorize")
+    IF(MY_VERBOSE_VECTORIZATION)
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftree-vectorizer-verbose=3")
+    ENDIF()
 ENDIF ()
 
 IF(MY_PARALLEL_LIB STREQUAL "OMP")
