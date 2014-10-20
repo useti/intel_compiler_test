@@ -255,10 +255,13 @@ int init(int argc, char* argv[])
 /// Tests
 ////////////////////////////////////////////////////////////////
 
-void VECTest(){
+float VECTest(){
+	int i;
+	float n_aggregate = 0;
     START_TIMECHECK();
 
-	l_aggregate = 0;
+
+//	l_aggregate = 0;
 	int ds_size = dataArray1.size();
 	for (int itr = 0; itr < iterate_count; itr++)
 	{
@@ -268,12 +271,13 @@ void VECTest(){
 #pragma vector always
 #pragma ivdep
 #endif
-		for (int i = 0; i < ds_size; i++)
+		for (i = 0; i < ds_size; i++)
 		{
-			l_aggregate = dataArray1[i] + dataArray2[i] + dataArray3[i];
+			n_aggregate += dataArray1[i] + dataArray2[i] + dataArray3[i];
 		}
 	}
     STOP_TIMECHECK();
+return n_aggregate;
 }
 
 void OMPTest(){
@@ -365,7 +369,7 @@ int main(int argc, char* argv[])
 
 		printf("\nVectorisation test\n");
 		for (int i = 0; i < run_count; i++){
-			VECTest();
+			float test_float = VECTest();
 		}
 #ifdef _WITH_OMP
 		printf("\nOpenMP test\n");
