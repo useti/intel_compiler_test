@@ -53,6 +53,11 @@ IF(MY_PARALLEL_LIB STREQUAL "OMP")
             IntellBenchmark
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/Tools.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/iCompilerTest.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/CompositeTest.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/OpenMPTest.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/VectorisationTest.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/TestData.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_writer.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_reader.cpp)
@@ -90,6 +95,11 @@ ELSE()
                 IntellBenchmark
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
 		${PROJECT_SOURCE_DIR}/IntelBenchmark/Tools.cpp
+	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/iCompilerTest.cpp
+        	${PROJECT_SOURCE_DIR}/IntelBenchmark/CompositeTest.cpp
+	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/OpenMPTest.cpp
+        	${PROJECT_SOURCE_DIR}/IntelBenchmark/VectorisationTest.cpp
+	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/TestData.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_writer.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_reader.cpp)
