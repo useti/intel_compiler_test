@@ -2,11 +2,14 @@ cmake_minimum_required (VERSION 2.6)
 
 PROJECT (INTELL_BENCHMARK)
 
+SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
 # Custom setting declaration
 SET(MY_COMPILER_OPTION "GCC" CACHE STRING "Use compiler")
 SET(MY_PARALLEL_LIB "OMP" CACHE STRING "Parallel library to use")
 SET(MY_VERBOSE_VECTORIZATION ON CACHE BOOL "Vectorization report")
 SET(MY_WITH_SIMD OFF CACHE BOOL "Use SIMD hint instead ivdep")
+SET(BUILD_DOCUMENTATION ON CACHE BOOL "Build DOC")
 
 # Common compiler settings
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpmath=sse -march=native --std=c++11")
@@ -49,15 +52,17 @@ IF(MY_PARALLEL_LIB STREQUAL "OMP")
     ADD_EXECUTABLE(
             IntellBenchmark
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
-            ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_value.cpp
-            ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_writer.cpp
-            ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_reader.cpp)
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_writer.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_reader.cpp)
 
     TARGET_LINK_LIBRARIES (
             IntellBenchmark
             ${Boost_LIBRARIES})
 
     LINK_DIRECTORIES ("${PROJECT_BINARY_DIR}")
+
+    INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/IntelBenchmark/external)
 
 ELSE()
     IF(MY_PARALLEL_LIB STREQUAL "TBB")
@@ -83,9 +88,9 @@ ELSE()
             ADD_EXECUTABLE(
                 IntellBenchmark
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
-                ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_value.cpp
-                ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_writer.cpp
-                ${PROJECT_SOURCE_DIR}/IntelBenchmark/json_reader.cpp)
+                ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
+                ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_writer.cpp
+                ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_reader.cpp)
 
             TARGET_LINK_LIBRARIES (
                 IntellBenchmark
@@ -97,11 +102,49 @@ ELSE()
                 "${TBB_LIBRARY_DIRS}")
 
             INCLUDE_DIRECTORIES(
-                ${TBB_INCLUDE_DIRS})
+                ${TBB_INCLUDE_DIRS}
+		${PROJECT_SOURCE_DIR}/IntelBenchmark/external)
         ENDIF()
     ENDIF()
 ENDIF()
 
+#DOC
+IF(BUILD_DOCUMENTATION)
+    FIND_PACKAGE(Sphinx REQUIRED)
+
+    IF(NOT DEFINED SPHINX_THEME)
+	SET(SPHINX_THEME default)
+    ENDIF()
+
+    IF(NOT DEFINED SPHINX_THEME_DIR)
+        SET(SPHINX_THEME_DIR)
+    ENDIF()
+
+    # configured documentation tools and intermediate build results
+    SET(BINARY_BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/_build")
+
+    # Sphinx cache with pickled ReST documents
+    SET(SPHINX_CACHE_DIR "${CMAKE_CURRENT_BINARY_DIR}/_doctrees")
+
+    # HTML output directory
+    SET(SPHINX_HTML_DIR "${CMAKE_CURRENT_BINARY_DIR}/doc/html")
+
+    CONFIGURE_FILE(
+	"${CMAKE_CURRENT_SOURCE_DIR}/conf.py.in"
+        "${BINARY_BUILD_DIR}/conf.py"
+	@ONLY)
+
+    ADD_CUSTOM_TARGET(benchmark_docs ALL
+	${SPHINX_EXECUTABLE}
+    	    -q -b html
+    	    -c "${BINARY_BUILD_DIR}"
+    	    -d "${SPHINX_CACHE_DIR}"
+    	    "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${SPHINX_HTML_DIR}"
+	COMMENT "Building HTML documentation with Sphinx")
+ENDIF()
+
+#install
 install(TARGETS IntellBenchmark
     DESTINATION "${CMAKE_INSTALL_PREFIX}/${CMAKE_PROJECT_NAME}/${MY_COMPILER_OPTION}/${MY_PARALLEL_LIB}"
     )

@@ -1,0 +1,1 @@
+Search.setIndex({titleterms:{intel:0,welcom:0,benchmark:0,document:0,compil:0,tabl:0,indic:0},objects:{},objnames:{},objtypes:{},titles:["Welcome to Intell compiler benchmark&#8217;s documentation!"],envversion:43,filenames:["index"],terms:{modul:0,search:0,index:0,content:0,page:0}})
