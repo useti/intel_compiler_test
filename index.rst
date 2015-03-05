@@ -20,6 +20,13 @@ TO DO:
 ======
 .. todolist::
 
+Tools
+=====
+
+.. doxygenclass:: Tools
+   :project: benchmark
+   :members:
+
 JSON
 =======
 
