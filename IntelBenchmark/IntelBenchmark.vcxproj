@@ -611,6 +611,7 @@
     <ClCompile Include="VectorisationTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="external\json_internalarray.inl" />
     <None Include="external\json_internalmap.inl" />
     <None Include="external\json_valueiterator.inl" />

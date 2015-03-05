@@ -139,5 +139,6 @@
     <None Include="external\json_valueiterator.inl">
       <Filter>Заголовочные файлы</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

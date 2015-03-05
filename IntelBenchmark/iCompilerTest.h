@@ -1,8 +1,13 @@
 #pragma once
+#include "TestData.h"
+
 class iCompilerTest
 {
 public:
-	iCompilerTest();
+	virtual float RunTest();
+
 	virtual ~iCompilerTest();
+
+	TestData& data;
 };
 
