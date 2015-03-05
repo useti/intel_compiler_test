@@ -204,11 +204,13 @@
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(LibraryPath)</LibraryPath>
     <ExecutablePath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(ProjectDir)\external;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Intell|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(LibraryPath)</LibraryPath>
     <ExecutablePath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(ProjectDir)\external;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -226,21 +228,25 @@
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(LibraryPath)</LibraryPath>
     <ExecutablePath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(ProjectDir)\external;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_OMP|x64'">
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(LibraryPath)</LibraryPath>
     <ExecutablePath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(ProjectDir)\external;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Intell|x64'">
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(LibraryPath)</LibraryPath>
     <ExecutablePath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(ProjectDir)\external;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Inrell_OMP|x64'">
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(LibraryPath)</LibraryPath>
     <ExecutablePath>C:\Program Files %28x86%29\Intel\Composer XE 2015\redist\intel64\tbb\vc12;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(ProjectDir)\external;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -291,8 +297,9 @@
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Intel\Composer XE 2015\tbb\include;C:\Program Files %28x86%29\Intel\Composer XE 2015\compiler\include;C:\boost\include\boost-1_55;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Strict</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/Qvec-report:1 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -312,8 +319,9 @@
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Intel\Composer XE 2015\tbb\include;C:\Program Files %28x86%29\Intel\Composer XE 2015\compiler\include;C:\boost\include\boost-1_55;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Strict</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/Qvec-report:1 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -341,7 +349,8 @@
       <BrowseInformation>true</BrowseInformation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Strict</FloatingPointModel>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -447,6 +456,11 @@
       <BrowseInformation>false</BrowseInformation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/Qvec-report:1 %(AdditionalOptions)</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <OpenMP>GenerateParallelCode</OpenMP>
+      <Cpp0xSupport>true</Cpp0xSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -474,6 +488,9 @@
       <BrowseInformation>false</BrowseInformation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/Qvec-report:1 %(AdditionalOptions)</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -503,6 +520,10 @@
       <OpenMPSupport>true</OpenMPSupport>
       <Optimization>Full</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Parallelization>true</Parallelization>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalOptions>/Qvec-report:1 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -511,6 +532,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Intel\Composer XE 2015\tbb\lib\intel64\vc12;C:\boost\lib_ia64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LargeAddressAware>true</LargeAddressAware>
+      <WPOAssemblyOutput>Asm_and_MachineCode_and_Source</WPOAssemblyOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Inrell_OMP|x64'">
@@ -532,6 +554,9 @@
       <OpenMPSupport>true</OpenMPSupport>
       <Optimization>Full</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/Qvec-report:1 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -546,6 +571,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="external\json_batchallocator.h" />
     <ClInclude Include="json\autolink.h" />
     <ClInclude Include="json\config.h" />
     <ClInclude Include="json\features.h" />
@@ -554,21 +580,20 @@
     <ClInclude Include="json\reader.h" />
     <ClInclude Include="json\value.h" />
     <ClInclude Include="json\writer.h" />
-    <ClInclude Include="json_batchallocator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="external\json_reader.cpp" />
+    <ClCompile Include="external\json_value.cpp" />
+    <ClCompile Include="external\json_writer.cpp" />
     <ClCompile Include="IntelBenchmark.cpp" />
-    <ClCompile Include="json_reader.cpp" />
-    <ClCompile Include="json_value.cpp" />
-    <ClCompile Include="json_writer.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="json_internalarray.inl" />
-    <None Include="json_internalmap.inl" />
-    <None Include="json_valueiterator.inl" />
+    <None Include="external\json_internalarray.inl" />
+    <None Include="external\json_internalmap.inl" />
+    <None Include="external\json_valueiterator.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

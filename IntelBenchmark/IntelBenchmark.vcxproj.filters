@@ -24,9 +24,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="json_batchallocator.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="json\autolink.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
@@ -51,6 +48,9 @@
     <ClInclude Include="json\writer.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="external\json_batchallocator.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -59,24 +59,24 @@
     <ClCompile Include="IntelBenchmark.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="json_reader.cpp">
+    <ClCompile Include="external\json_reader.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="json_value.cpp">
+    <ClCompile Include="external\json_value.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="json_writer.cpp">
+    <ClCompile Include="external\json_writer.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="json_internalarray.inl">
+    <None Include="external\json_internalarray.inl">
       <Filter>Заголовочные файлы</Filter>
     </None>
-    <None Include="json_internalmap.inl">
+    <None Include="external\json_internalmap.inl">
       <Filter>Заголовочные файлы</Filter>
     </None>
-    <None Include="json_valueiterator.inl">
+    <None Include="external\json_valueiterator.inl">
       <Filter>Заголовочные файлы</Filter>
     </None>
   </ItemGroup>

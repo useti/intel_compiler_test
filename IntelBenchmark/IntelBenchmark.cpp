@@ -292,13 +292,14 @@ float VECTest(){
 		}
 	}
     STOP_TIMECHECK();
-return n_aggregate;
+	return n_aggregate;
 }
 
-void OMPTest(){
+float OMPTest(){
+	float n_aggregate = 0;
     START_TIMECHECK();
 
-	l_aggregate = 0;
+	//l_aggregate = 0;
 	int ds_size = dataArray1.size();
 	const int size = iterate_count;
 #ifdef _WITH_OMP
@@ -306,16 +307,17 @@ void OMPTest(){
 		for (int itr = 0; itr < size; itr++) {
 #else
 #ifdef _WITH_TBB
-	tbb::parallel_for(0, size ,1, [=] (int itr) {
+	tbb::parallel_for(0, size ,1, [&n_aggregate, ds_size] (int itr) {
 #else
 	{
 #endif //_WITH_TBB
 #endif //_WITH_OMP
-	
+		int i;
 #pragma novector
-			for (int i = 0; i < ds_size; i++)
+#pragma loop(no_vector)
+			for (i = 0; i < ds_size; i++)
 			{
-				l_aggregate = dataArray1[i] + dataArray2[i] + dataArray3[i];
+				n_aggregate += dataArray1[i] + dataArray2[i] + dataArray3[i];
 			}
 		}
 #ifdef _WITH_OMP
@@ -325,12 +327,14 @@ void OMPTest(){
 #endif
 #endif
     STOP_TIMECHECK();
+	return n_aggregate;
 }
 
-void CMPTest(){
+float CMPTest(){
+	float n_aggregate = 0;
     START_TIMECHECK();
 
-	l_aggregate = 0;
+	//l_aggregate = 0;
 	int ds_size = dataArray1.size();
 	const int size = iterate_count;
 #ifdef _WITH_OMP
@@ -338,21 +342,21 @@ void CMPTest(){
 		for (int itr = 0; itr < size; itr++) {
 #else
 #ifdef _WITH_TBB
-	tbb::parallel_for(0, size ,1, [=] (int itr) {
+	tbb::parallel_for(0, size ,1, [&n_aggregate, ds_size] (int itr) {
 #else
 	{
 #endif //_WITH_TBB
 #endif //_WITH_OMP
-
+		int i;
 #ifdef _WITH_SIMD
 #pragma simd
 #else
 #pragma vector always
 #pragma ivdep
 #endif
-			for (int i = 0; i < ds_size; i++)
+			for (i = 0; i < ds_size; i++)
 			{
-				l_aggregate = dataArray1[i] + dataArray2[i] + dataArray3[i];
+				n_aggregate += dataArray1[i] + dataArray2[i] + dataArray3[i];
 			}
 		}
 #ifdef _WITH_OMP
@@ -362,6 +366,7 @@ void CMPTest(){
 #endif
 #endif
     STOP_TIMECHECK();
+	return n_aggregate;
 }
 
 int main(int argc, char* argv[])
@@ -395,11 +400,11 @@ int main(int argc, char* argv[])
 #endif //_WITH_TBB
 #endif //_WITH_OMP
 		for (int i = 0; i < run_count; i++){
-			OMPTest();
+			float test_float = OMPTest();
 		}
 		printf("\nComposite test\n");
 		for (int i = 0; i < run_count; i++){
-			CMPTest();
+			float test_float = CMPTest();
 		}
 		printf("\nOverall runtime\n");
         STOP_TIMECHECK();
