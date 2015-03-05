@@ -52,6 +52,7 @@ IF(MY_PARALLEL_LIB STREQUAL "OMP")
     ADD_EXECUTABLE(
             IntellBenchmark
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/Tools.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_writer.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_reader.cpp)
@@ -88,6 +89,7 @@ ELSE()
             ADD_EXECUTABLE(
                 IntellBenchmark
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
+		${PROJECT_SOURCE_DIR}/IntelBenchmark/Tools.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_writer.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_reader.cpp)

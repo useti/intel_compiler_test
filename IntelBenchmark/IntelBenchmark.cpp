@@ -2,8 +2,7 @@
 #include <boost/program_options.hpp>
 #include <boost/date_time.hpp>
 
-#include "json/json.h"
-#include "json/value.h"
+#include "Tools.h"
 
 #ifdef _WITH_OMP
 #include <omp.h>
@@ -12,32 +11,6 @@
 #endif // _WITH_TBB
 #include <tbb/tbb.h>
 #endif // _WITH_OMP
-
-#define START_TIMECHECK() ptime startt = boost::posix_time::microsec_clock::local_time();
-
-#define STOP_TIMECHECK_W() ptime curentt = boost::posix_time::microsec_clock::local_time();\
-    boost::posix_time::time_duration diff = curentt - startt;\
-    char tf[255];\
-    std::stringstream ssDuration;\
-    ssDuration << diff;\
-    std::string str = ssDuration.str();\
-	sprintf_s(tf,sizeof(tf), "%s\n", str.c_str()); \
-    cout << tf ;
-
-#define STOP_TIMECHECK_L() ptime curentt = boost::posix_time::microsec_clock::local_time();\
-    boost::posix_time::time_duration diff = curentt - startt;\
-    char tf[255];\
-    std::stringstream ssDuration;\
-    ssDuration << diff;\
-    std::string str = ssDuration.str();\
-	sprintf(tf, "%s\n", str.c_str()); \
-    cout << tf ;
-
-#ifdef _WINDOWS
-#define STOP_TIMECHECK() STOP_TIMECHECK_W()
-#else
-#define STOP_TIMECHECK() STOP_TIMECHECK_L()
-#endif
 
 using namespace std;
 using namespace boost::posix_time;
@@ -54,31 +27,8 @@ po::options_description desc("Usage:\n\nIntellBenchmark [options] dataset.json\n
 
 std::vector<float> dataArray1, dataArray2, dataArray3;
 
-////////////////////////////////////////////////////////////////
-/// Tools
-////////////////////////////////////////////////////////////////
-
 int printHelp(){
 	cout << desc << "\n";
-	return 0;
-}
-
-int writeInputFile(const std::string &rewritePath, const Json::Value &root)
-{
-	Json::StyledWriter writer;
-	std::string rewrite = writer.write(root);
-#ifdef _WINDOWS                                                                        
-	FILE *fout;
-	errno_t errn = fopen_s(&fout, rewritePath.c_str(), "wt");
-#else                                                                                  
-	FILE *fout = fopen(rewritePath.c_str(), "wt");
-#endif                                                                                 
-	if (!fout)
-	{
-		return 1;
-	}
-	fprintf(fout, "%s\n", rewrite.c_str());
-	fclose(fout);
 	return 0;
 }
 
@@ -125,7 +75,7 @@ int generateDataset(string fname, long long int ds_size)
 			ds_json[(char*)"chunk"] = Json::Value(chunk);
 			ds_json[(char*)"run_count"] = Json::Value(run_count);
 
-			return writeInputFile(fname, ds_json); // We dont want to run tests after generate, so output inverted
+			return Tools::writeInputFile(fname, ds_json); // We dont want to run tests after generate, so output inverted
 		}
 		else
 		{
@@ -140,35 +90,12 @@ int generateDataset(string fname, long long int ds_size)
 	return 1;
 }
 
-std::string readInputFile(const char *path)
-{
-#ifdef _WINDOWS
-	FILE *file;
-	errno_t errn = fopen_s(&file, path, "rb");
-#else
-	FILE *file = fopen(path, "rb");
-#endif
-	if (!file)
-		return std::string("");
-	fseek(file, 0, SEEK_END);
-	long size = ftell(file);
-	fseek(file, 0, SEEK_SET);
-	std::string text;
-	char *buffer = new char[size + 1];
-	buffer[size] = 0;
-	if (fread(buffer, 1, size, file) == (unsigned long)size)
-		text = buffer;
-	fclose(file);
-	delete[] buffer;
-	return text;
-}
-
 int loadDataset(string fname)
 {
 
 	try
 	{
-		string ds_text = readInputFile(fname.c_str());
+		string ds_text = Tools::readInputFile(fname.c_str());
 		Json::Features ds_ftrs;
 		Json::Value ds_json;
 		Json::Reader reader(ds_ftrs);
