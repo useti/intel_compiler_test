@@ -53,9 +53,8 @@ IF(MY_PARALLEL_LIB STREQUAL "OMP")
             IntellBenchmark
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/Tools.cpp
-            ${PROJECT_SOURCE_DIR}/IntelBenchmark/iCompilerTest.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/CompositeTest.cpp
-            ${PROJECT_SOURCE_DIR}/IntelBenchmark/OpenMPTest.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/ParallelTest.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/VectorisationTest.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/TestData.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
@@ -95,9 +94,8 @@ ELSE()
                 IntellBenchmark
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
 		${PROJECT_SOURCE_DIR}/IntelBenchmark/Tools.cpp
-	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/iCompilerTest.cpp
         	${PROJECT_SOURCE_DIR}/IntelBenchmark/CompositeTest.cpp
-	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/OpenMPTest.cpp
+	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/ParallelTest.cpp
         	${PROJECT_SOURCE_DIR}/IntelBenchmark/VectorisationTest.cpp
 	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/TestData.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
@@ -157,45 +155,11 @@ ENDMACRO(ADD_DOCUMENTATION)
 
 
 IF(BUILD_DOCUMENTATION)
-    FIND_PACKAGE(Sphinx REQUIRED)
-
-    IF(NOT DEFINED SPHINX_THEME)
-	SET(SPHINX_THEME default)
-    ENDIF()
-
-    IF(NOT DEFINED SPHINX_THEME_DIR)
-        SET(SPHINX_THEME_DIR)
-    ENDIF()
-
-    # configured documentation tools and intermediate build results
-    SET(BINARY_BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/_build")
-
-    # Sphinx cache with pickled ReST documents
-    SET(SPHINX_CACHE_DIR "${CMAKE_CURRENT_BINARY_DIR}/_doctrees")
-
-    # HTML output directory
-    SET(SPHINX_HTML_DIR "${CMAKE_CURRENT_BINARY_DIR}/doc/html")
-
-    CONFIGURE_FILE(
-	"${CMAKE_CURRENT_SOURCE_DIR}/doc/conf.py.in"
-        "${BINARY_BUILD_DIR}/conf.py"
-	@ONLY)
-
     
     SET(DOXY_OUTPUT_LANGUAGE "English")
     SET(DOXY_INPUT ${PROJECT_SOURCE_DIR})
-    ADD_DOCUMENTATION(xml doc/Doxyfile)
 
-    ADD_CUSTOM_TARGET(benchmark_docs ALL
-	${SPHINX_EXECUTABLE}
-    	    -q -b html
-    	    -c "${BINARY_BUILD_DIR}"
-    	    -d "${SPHINX_CACHE_DIR}"
-    	    "${CMAKE_CURRENT_SOURCE_DIR}"
-            "${SPHINX_HTML_DIR}"
-	COMMENT "Building HTML documentation with Sphinx")
-    
-    ADD_DEPENDENCIES(benchmark_docs xml)
+    ADD_DOCUMENTATION(html doc/Doxy_html)
 
 ENDIF()
 

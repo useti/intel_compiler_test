@@ -20,6 +20,10 @@ TO DO:
 ======
 .. todolist::
 
+.. autodoxygenindex::
+   :project: auto
+   :no-link:
+
 Tools
 =====
 

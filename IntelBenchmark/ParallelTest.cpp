@@ -21,15 +21,16 @@ float ParallelTest::RunTest()
 	float n_aggregate = 0;
 	START_TIMECHECK();
 
-	//l_aggregate = 0;
 	int ds_size = data->dataArray1.size();
 	const int size = data->iterate_count;
+
+	TestData* d = data;
 #ifdef _WITH_OMP
 #pragma omp parallel for schedule(static, data->chunk)
 	for (int itr = 0; itr < size; itr++) {
 #else
 #ifdef _WITH_TBB
-	tbb::parallel_for(0, size, 1, [&n_aggregate, ds_size, data](int itr) {
+	tbb::parallel_for(0, size, 1, [&n_aggregate, ds_size, d](int itr) {
 #else
 	{
 #endif //_WITH_TBB
@@ -39,7 +40,7 @@ float ParallelTest::RunTest()
 #pragma loop(no_vector)
 		for (i = 0; i < ds_size; i++)
 		{
-			n_aggregate += data->dataArray1[i] + data->dataArray2[i] + data->dataArray3[i];
+			n_aggregate += d->dataArray1[i] + d->dataArray2[i] + d->dataArray3[i];
 		}
 	}
 #ifdef _WITH_OMP

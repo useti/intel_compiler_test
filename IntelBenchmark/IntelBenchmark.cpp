@@ -1,3 +1,10 @@
+/*! \mainpage Intel compiler benchmark
+ *
+ * \section intro_sec Introduction
+ *
+ * This is the small example program for testing intel compiler and parallel libraries performance.
+ */
+
 #include "stdafx.h"
 #include <boost/program_options.hpp>
 #include <boost/date_time.hpp>
@@ -30,6 +37,8 @@ float l_aggregate = 0;
 
 po::options_description desc("Usage:\n\nIntellBenchmark [options] dataset.json\n\n Allowed options");
 
+
+/// Боль и печаль, но по другому никак.
 std::vector<iCompilerTest*> tests;
 
 TestData* dataset;
@@ -41,11 +50,15 @@ int printHelp(){
 
 void initTests()
 {
-	tests.push_back(new VectorisationTest(*dataset));
-	tests.push_back(new ParallelTest(*dataset));
-	tests.push_back(new CompositeTest(*dataset));
+	tests = std::vector< iCompilerTest* > ({
+		new VectorisationTest(*dataset),
+		new ParallelTest(*dataset),
+		new CompositeTest(*dataset)
+	});
 }
 
+/** \brief Tests init
+ */
 int init(int argc, char* argv[])
 {
     START_TIMECHECK();
@@ -86,7 +99,7 @@ int init(int argc, char* argv[])
 		}
 		if (vm.count("generate")){
 			printf("\nInit time (generate)\n");
-			//int r = TestData::Generate(
+			
 			try{
 				dataset = new TestData(
 					ds_fnames[0],
@@ -104,7 +117,7 @@ int init(int argc, char* argv[])
 				return 0;
 			}
 			
-            return 1;
+            return 0;
 		}
 		else{
 			printf("\nInit time (load)\n");

@@ -5,17 +5,20 @@
 #include "json/value.h"
 #include "Tools.h"
 
-
+/** \brief Test dataset class with save/load logic
+ */
 class TestData
 {
 public:
+	/// \brief Constructor with "generate" logic
 	TestData(
 		std::string fname,
 		long long int ds_size,
 		int chunk,
 		int iterate_count,
 		int run_count);
-
+	
+	/// \brief Constructor with load file logic
 	TestData(std::string fname);
 
 	virtual ~TestData();
@@ -42,7 +45,6 @@ private:
 		std::string fname);
 
 	float aggregate = 0;
-	int run_count = 3;
-	float l_aggregate = 0;
+	int run_count = 3;	
 };
 

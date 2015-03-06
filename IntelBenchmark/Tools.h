@@ -33,6 +33,8 @@
 
 
 /** \brief Common useful tools.
+
+    \todo Добавить документацию
  */
 class Tools
 {

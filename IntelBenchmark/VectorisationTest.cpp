@@ -16,7 +16,6 @@ float VectorisationTest::RunTest()
 	START_TIMECHECK();
 
 
-	//	l_aggregate = 0;
 	int ds_size = data->dataArray1.size();
 	for (int itr = 0; itr < data->iterate_count; itr++)
 	{
