@@ -1,15 +1,15 @@
-#include "VectorisationTest.h"
+#include "VectorizationTest.h"
 
 using namespace std;
 using namespace boost::posix_time;
 using namespace boost::gregorian;
 
-void VectorisationTest::Describe()
+void VectorizationTest::Describe()
 {
-	printf("\nVectorisation test\n");
+	printf("\nVectorization test\n");
 }
 
-float VectorisationTest::RunTest()
+float VectorizationTest::RunTest()
 {
 	int i;
 	float n_aggregate = 0;
@@ -34,6 +34,6 @@ float VectorisationTest::RunTest()
 	return n_aggregate;
 }
 
-VectorisationTest::~VectorisationTest()
+VectorizationTest::~VectorizationTest()
 {
 }

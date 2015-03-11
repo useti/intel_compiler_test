@@ -14,9 +14,9 @@
 
 /** \brief Composite loop test
 *
-* Trying to run external loop as parallel, and interntal loop as vectorised.
+* Trying to run external loop as parallel, and interntal loop as vectorized.
 *
-* Have for wariants - OpenMP/TBB and vector/simd .
+* Have for variants - OpenMP/TBB and vector/simd .
 *
 * Switch by define _WITH_TBB / _WITH_OMP and _WITH_SIMD
 */

@@ -12,7 +12,7 @@
 #include "Tools.h"
 #include "iCompilerTest.h"
 #include "ParallelTest.h"
-#include "VectorisationTest.h"
+#include "VectorizationTest.h"
 #include "CompositeTest.h"
 #include "TestData.h"
 
@@ -35,7 +35,7 @@ int run_count = 3;
 int chunk = 10;
 float l_aggregate = 0;
 
-po::options_description desc("Usage:\n\nIntellBenchmark [options] dataset.json\n\n Allowed options");
+po::options_description desc("Usage:\n\nIntelBenchmark [options] dataset.json\n\n Allowed options");
 
 
 /// Боль и печаль, но по другому никак.
@@ -51,7 +51,7 @@ int printHelp(){
 void initTests()
 {
 	tests = std::vector< iCompilerTest* > ({
-		new VectorisationTest(*dataset),
+		new VectorizationTest(*dataset),
 		new ParallelTest(*dataset),
 		new CompositeTest(*dataset)
 	});

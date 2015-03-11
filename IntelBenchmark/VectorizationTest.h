@@ -4,26 +4,26 @@
 #include "iCompilerTest.h"
 #include "TestData.h"
 
-/** \brief Loop vectorisation test
+/** \brief Loop vectorization test
 *
-* Trying to vectorise inner loop, exeternal loop - standart.
+* Trying to vectorize inner loop, exeternal loop - standart.
 *
-* Have two wariants - vector/ivdep and simd.
+* Have two variants - vector/ivdep and simd.
 *
 * Switch by define _WITH_SIMD (microsoft compiler does not aware about vector pragma).
 */
-class VectorisationTest :
+class VectorizationTest :
 	public iCompilerTest
 {
 public:
-	VectorisationTest() = default;
-	VectorisationTest(TestData& d){ data = &d; };
+	VectorizationTest() = default;
+	VectorizationTest(TestData& d){ data = &d; };
 	
 	/// \brief Printout class description
 	virtual void Describe();
 	
 	/// \brief Perform test
 	virtual float RunTest();
-	virtual ~VectorisationTest();
+	virtual ~VectorizationTest();
 };
 

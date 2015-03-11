@@ -50,19 +50,19 @@ IF(MY_PARALLEL_LIB STREQUAL "OMP")
         date_time)
 
     ADD_EXECUTABLE(
-            IntellBenchmark
+            IntelBenchmark.bin
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/Tools.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/CompositeTest.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/ParallelTest.cpp
-            ${PROJECT_SOURCE_DIR}/IntelBenchmark/VectorisationTest.cpp
+            ${PROJECT_SOURCE_DIR}/IntelBenchmark/VectorizationTest.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/TestData.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_writer.cpp
             ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_reader.cpp)
 
     TARGET_LINK_LIBRARIES (
-            IntellBenchmark
+            IntelBenchmark.bin
             ${Boost_LIBRARIES})
 
     LINK_DIRECTORIES ("${PROJECT_BINARY_DIR}")
@@ -91,19 +91,19 @@ ELSE()
                 date_time)
 
             ADD_EXECUTABLE(
-                IntellBenchmark
+                IntelBenchmark.bin
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/IntelBenchmark.cpp
 		${PROJECT_SOURCE_DIR}/IntelBenchmark/Tools.cpp
         	${PROJECT_SOURCE_DIR}/IntelBenchmark/CompositeTest.cpp
 	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/ParallelTest.cpp
-        	${PROJECT_SOURCE_DIR}/IntelBenchmark/VectorisationTest.cpp
+        	${PROJECT_SOURCE_DIR}/IntelBenchmark/VectorizationTest.cpp
 	        ${PROJECT_SOURCE_DIR}/IntelBenchmark/TestData.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_value.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_writer.cpp
                 ${PROJECT_SOURCE_DIR}/IntelBenchmark/external/json_reader.cpp)
 
             TARGET_LINK_LIBRARIES (
-                IntellBenchmark
+                IntelBenchmark.bin
                 ${Boost_LIBRARIES}
                 ${TBB_LIBRARIES})
 

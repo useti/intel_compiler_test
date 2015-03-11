@@ -568,9 +568,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="CompositeTest.h" />
     <ClInclude Include="external\json\autolink.h" />
     <ClInclude Include="external\json\config.h" />
@@ -595,7 +592,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestData.h" />
     <ClInclude Include="Tools.h" />
-    <ClInclude Include="VectorisationTest.h" />
+    <ClInclude Include="VectorizationTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CompositeTest.cpp" />
@@ -607,7 +604,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TestData.cpp" />
     <ClCompile Include="Tools.cpp" />
-    <ClCompile Include="VectorisationTest.cpp" />
+    <ClCompile Include="VectorizationTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
