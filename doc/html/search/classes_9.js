@@ -5,5 +5,5 @@ var searchData=
   ['valueconstiterator',['ValueConstIterator',['../classJson_1_1ValueConstIterator.html',1,'Json']]],
   ['valueiterator',['ValueIterator',['../classJson_1_1ValueIterator.html',1,'Json']]],
   ['valueiteratorbase',['ValueIteratorBase',['../classJson_1_1ValueIteratorBase.html',1,'Json']]],
-  ['vectorisationtest',['VectorisationTest',['../classVectorisationTest.html',1,'']]]
+  ['vectorizationtest',['VectorizationTest',['../classVectorizationTest.html',1,'']]]
 ];

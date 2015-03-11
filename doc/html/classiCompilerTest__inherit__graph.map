@@ -1,5 +1,5 @@
 <map id="iCompilerTest" name="iCompilerTest">
 <area shape="rect" id="node2" href="$classCompositeTest.html" title="Composite loop test. " alt="" coords="5,80,116,107"/>
 <area shape="rect" id="node3" href="$classParallelTest.html" title="Parallel loop test. " alt="" coords="141,80,231,107"/>
-<area shape="rect" id="node4" href="$classVectorisationTest.html" title="Loop vectorisation test. " alt="" coords="256,80,380,107"/>
+<area shape="rect" id="node4" href="$classVectorizationTest.html" title="Loop vectorization test. " alt="" coords="256,80,380,107"/>
 </map>
